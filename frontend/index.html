@@ -85,8 +85,8 @@
                 />
                 <input type="submit" />
             </form>
-            <a href="" id="urlShortened">Your link is show here</a>
-            <button id="copyButton">Copy</button>
+            <a href="#" id="urlShortened">Your link will show here</a>
+            <button onclick="copyFunction()" id="copyButton">Copy</button>
         </div>
 
         <script>
@@ -100,7 +100,7 @@
                 const data = new URLSearchParams();
                 data.append('url', url);
 
-                fetch('http://shortenit.me/api/shorten-url', {
+                fetch('https://shortenit.me/api/shorten-url', {
                     method: 'POST',
                     headers: {
                         'Content-Type':
@@ -113,6 +113,7 @@
                             if (response.status !== 200) {
                                 return alert(data.error);
                             }
+                            alert('URL shortened successfully!');
                             urlShortened.href =
                                 'https://shortenit.me/' + data.urlShortened;
                             urlShortened.innerHTML =
@@ -124,18 +125,14 @@
                     });
             });
 
-            copyButton.addEventListener('click', () => {
-                const text = urlShortened.innerHTML;
-                navigator.clipboard
-                    .writeText(text)
-                    .then(() => {
-                        alert('URL copied to clipboard!');
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                        alert('Failed to copy URL');
-                    });
-            });
+            function copyFunction() {
+                if (urlShortened.innerHTML === 'Your link will show here') {
+                    return alert('No URL to copy!');
+                }
+                const copyText = document.getElementById('urlShortened');
+                navigator.clipboard.writeText(copyText.innerHTML);
+                alert('URL copied to clipboard!');
+            }
         </script>
     </body>
 </html>
