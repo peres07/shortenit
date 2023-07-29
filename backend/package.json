@@ -4,13 +4,17 @@
     "description": "",
     "main": "index.ts",
     "scripts": {
-        "dev": "nodemon --esm src/index.ts",
-        "build": "npx tsc",
-        "start": "node dist/index.js",
-        "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
-        "lint:fix": "eslint --fix src/**/*.{js,jsx,ts,tsx,json}",
+        "start": "nodemon src/index.ts",
+        "build": "rimraf dist && tsc",
+        "ts.check": "tsc --project tsconfig.json",
+        "add-build": "git add dist",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
+    "pre-commit": [
+        "ts.check",
+        "build",
+        "add-build"
+    ],
     "type": "module",
     "keywords": [],
     "author": "",
@@ -26,6 +30,8 @@
         "eslint-plugin-import": "^2.27.5",
         "eslint-plugin-n": "^16.0.1",
         "eslint-plugin-promise": "^6.1.1",
+        "pre-commit": "^1.2.2",
+        "rimraf": "^5.0.1",
         "typescript": "^5.1.6"
     },
     "dependencies": {
