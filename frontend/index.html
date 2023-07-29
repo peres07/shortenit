@@ -100,7 +100,7 @@
                 const data = new URLSearchParams();
                 data.append('url', url);
 
-                fetch('http://127.0.0.1:3000/api/shorten-url', {
+                fetch('http://shortenit.me/api/shorten-url', {
                     method: 'POST',
                     headers: {
                         'Content-Type':
@@ -114,9 +114,9 @@
                                 return alert(data.error);
                             }
                             urlShortened.href =
-                                'http://127.0.0.1:3000/' + data.urlShortened;
+                                'https://shortenit.me/' + data.urlShortened;
                             urlShortened.innerHTML =
-                                'http://127.0.0.1:3000/' + data.urlShortened;
+                                'https://shortenit.me/' + data.urlShortened;
                         });
                     })
                     .catch(function (err) {
