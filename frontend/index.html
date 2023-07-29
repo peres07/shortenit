@@ -1,22 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shorten it!</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div>
-        <h1>Shorten it!</h1>
-        <form id="url-form">
-            <input type="text" name="url" id="url" placeholder="Enter URL here" required=true>
-            <input type="submit">
-        </form>
-        <a href="" id="urlShortened">Your link is show here</a>
-        <button id="copyButton">Copy</button>
-    </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Shorten it!</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+            }
 
-    <script src="script.js"></script>
-</body>
+            div {
+                max-width: 600px;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            h1 {
+                color: #333;
+                font-size: 36px;
+                margin-top: 50px;
+            }
+
+            form {
+                margin-top: 50px;
+            }
+
+            input[type='text'] {
+                width: 80%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                box-sizing: border-box;
+                border: 2px solid #ccc;
+                border-radius: 4px;
+            }
+
+            input[type='submit'] {
+                width: 80%;
+                background-color: #4caf50;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            input[type='submit']:hover {
+                background-color: #45a049;
+            }
+
+            a#urlShortened {
+                display: block;
+                margin-top: 20px;
+            }
+
+            button#copyButton {
+                width: 80%;
+                background-color: #008cba;
+                color: white;
+                padding: 14px 20px;
+                margin-top: 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            button#copyButton:hover {
+                background-color: #0077a3;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>Shorten it!</h1>
+            <form id="url-form">
+                <input
+                    type="text"
+                    name="url"
+                    id="url"
+                    placeholder="Enter URL here"
+                    required="true"
+                />
+                <input type="submit" />
+            </form>
+            <a href="" id="urlShortened">Your link is show here</a>
+            <button id="copyButton">Copy</button>
+        </div>
+
+        <script>
+            const urlForm = document.getElementById('url-form');
+            const urlShortened = document.getElementById('urlShortened');
+
+            urlForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const url = document.getElementById('url').value;
+                const data = new URLSearchParams();
+                data.append('url', url);
+
+                fetch('http://127.0.0.1:3000/api/shorten-url', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type':
+                            'application/x-www-form-urlencoded; charset=UTF-8',
+                    },
+                    body: data,
+                })
+                    .then(function (response) {
+                        response.json().then(function (data) {
+                            if (response.status !== 200) {
+                                return alert(data.error);
+                            }
+                            urlShortened.href =
+                                'http://127.0.0.1:3000/' + data.urlShortened;
+                            urlShortened.innerHTML =
+                                'http://127.0.0.1:3000/' + data.urlShortened;
+                        });
+                    })
+                    .catch(function (err) {
+                        alert('An error occurred: ' + err);
+                    });
+            });
+
+            copyButton.addEventListener('click', () => {
+                const text = urlShortened.innerHTML;
+                navigator.clipboard
+                    .writeText(text)
+                    .then(() => {
+                        alert('URL copied to clipboard!');
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        alert('Failed to copy URL');
+                    });
+            });
+        </script>
+    </body>
 </html>
