@@ -6,8 +6,15 @@
     "scripts": {
         "start": "nodemon --esm src/index.ts",
         "build": "rimraf dist && tsc",
+        "ts.check": "tsc --project tsconfig.json",
+        "add-build": "git add dist",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
+    "pre-commit": [
+        "ts.check",
+        "build",
+        "add-build"
+    ],
     "type": "module",
     "keywords": [],
     "author": "",
@@ -23,6 +30,7 @@
         "eslint-plugin-import": "^2.27.5",
         "eslint-plugin-n": "^16.0.1",
         "eslint-plugin-promise": "^6.1.1",
+        "pre-commit": "^1.2.2",
         "rimraf": "^5.0.1",
         "typescript": "^5.1.6"
     },
