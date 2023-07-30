@@ -2,7 +2,7 @@
 
 Shorten it é um projeto desenvolvido em NodeJS, express, postgresql, typescript, html e css. O projeto tem o objetivo de facilitar a encurtação de URL's, para que o usuário possa compartilhar links de maneira mais fácil e bonita.
 
-O projeto conta com um domínio próprio, hospedado na AWS com um servidor nginx configurado na DNS do Route53. Você pode acessar o projeto através do link: [https://shortenit.com.br](https://shortenit.com.br)
+O projeto conta com um domínio próprio, hospedado na AWS com um servidor nginx configurado na DNS do Route53. Você pode acessar o projeto através do link: [https://shortenit.me](https://shortenit.me)
 
 
 ## Tecnologias utilizadas
