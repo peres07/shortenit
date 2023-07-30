@@ -71,6 +71,16 @@ npm run dev
 }
 ```
 
+## GET /api/statistics/total-urls
+
+### Response
+
+```json
+{
+    "totalShortened": 10
+}
+```
+
 ## GET /:shortened_url
 
 ### Response
