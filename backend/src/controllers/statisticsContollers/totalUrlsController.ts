@@ -1,5 +1,5 @@
 import { type Request, type Response } from 'express'
-import { selectAll } from '../database/selectAll.js'
+import { selectAll } from '../../database/statistics/selectAll.js'
 
 export default async function allUrls (req: Request, res: Response): Promise<Response> {
   try {

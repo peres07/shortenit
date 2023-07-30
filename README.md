@@ -71,6 +71,27 @@ npm run dev
 }
 ```
 
+## GET /api/statistics/get-url
+
+### Request
+
+```json
+{
+    "url": "https://shortenit.me/abc123"
+}
+```
+
+### Response
+
+```json
+{
+    "url": "https://www.google.com",
+    "shortenedUrl": "abc123",
+    "totalClicks": 10,
+    "createdAt": "2022-08-01T00:00:00.000Z",
+}
+```
+
 ## GET /api/statistics/total-urls
 
 ### Response

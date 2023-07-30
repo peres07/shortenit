@@ -5,15 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Shorten It is a URL shortener that simplifies your online navigation and sharing experience by turning long and complex URLs into concise and shareable links." />
         <title>Shorten it!: Your URLs shortened.</title>
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="global.css" />
+        <link rel="stylesheet" href="./home/home.css" />
     </head>
     <body>
         <header>
             <nav>
-                <a href="https://shortenit.me">Home</a>
-                <a href="https://shortenit.me/statistics">Statistics</a>
+                <a href="/frontend/index.html">Home</a>
+                <a href="/frontend/statistics/statistics.html">Statistics</a>
             </nav>
             <h1>Shorten it!</h1>
+            <p>Shorten your URLs</p>
             <p id="totalUrls">Loading...</p>
         </header>
         <main>
@@ -31,6 +33,6 @@
             <button onclick="copyFunction()" id="copyButton">Copy</button>
         </main>
 
-        <script src="home.js"></script>
+        <script src="./home/home.js"></script>
     </body>
 </html>

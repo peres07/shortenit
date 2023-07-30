@@ -1,5 +1,5 @@
-import { query } from './utils/query.js'
-import type { Statistics } from '../types/statistics.js'
+import { query } from '../utils/query.js'
+import type { Statistics } from '../../types/statistics.js'
 
 export async function selectAll (): Promise<false | Statistics> {
   try {

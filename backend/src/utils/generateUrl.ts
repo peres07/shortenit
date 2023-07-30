@@ -1,5 +1,5 @@
-import { saveUrl } from '../database/saveUrl.js'
-import { findUrl } from '../database/findUrl.js'
+import { saveUrl } from '../database/manager/saveUrl.js'
+import { findUrl } from '../database/manager/findUrl.js'
 
 export async function generateUrl (url: string): Promise<boolean | string> {
   try {
@@ -19,7 +19,7 @@ export async function generateUrl (url: string): Promise<boolean | string> {
       return findUrlResult.shortened_url
     }
 
-    const saveUrlResult = await saveUrl(result, url)
+    const saveUrlResult = await saveUrl(result, url, 0, new Date())
 
     if (!saveUrlResult) {
       throw new Error('Could not save the URL')

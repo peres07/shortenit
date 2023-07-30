@@ -1,5 +1,5 @@
-import { query } from './utils/query.js'
-import type { Url } from '../types/url.js'
+import { query } from '../utils/query.js'
+import type { Url } from '../../types/url.js'
 
 export async function findUrl (url: string): Promise<false | Url> {
   try {
@@ -10,7 +10,7 @@ export async function findUrl (url: string): Promise<false | Url> {
             `,
             [url]
     )
-    if (result.rows[0] === undefined) {
+    if (result.rowCount === 0) {
       return false
     }
     return result.rows[0]

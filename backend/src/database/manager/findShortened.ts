@@ -1,5 +1,5 @@
-import { query } from './utils/query.js'
-import type { Url } from '../types/url.js'
+import { query } from '../utils/query.js'
+import type { Url } from '../../types/url.js'
 
 export async function findShortened (shortenedUrl: string): Promise<false | Url> {
   try {
@@ -7,7 +7,7 @@ export async function findShortened (shortenedUrl: string): Promise<false | Url>
       'SELECT * FROM urls WHERE shortened_url = $1',
       [shortenedUrl]
     )
-    if (result.rows[0] === undefined) {
+    if (result.rowCount === 0) {
       return false
     }
     return result.rows[0]

@@ -1,6 +1,7 @@
 import { type Request, type Response } from 'express'
 
-import { findShortened } from '../database/findShortened.js'
+import { findShortened } from '../database/manager/findShortened.js'
+import { updateClicks } from '../database/manager/updateClicks.js'
 
 export default async function shortenUrl (req: Request, res: Response): Promise<void> {
   try {
@@ -9,6 +10,8 @@ export default async function shortenUrl (req: Request, res: Response): Promise<
     if (urlFound === false) {
       throw new Error('Could not find the shortened URL')
     }
+    const clicks = urlFound.total_clicks + 1
+    await updateClicks(urlFound.shortened_url, clicks)
     res.redirect(urlFound.url)
   } catch (error) {
     console.log(error)

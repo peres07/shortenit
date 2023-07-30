@@ -40,12 +40,6 @@ h1 {
     margin-top: 30px;
 }
 
-p#totalUrls {
-    color: #121212;
-    font-size: 18px;
-    margin-top: 20px;
-}
-
 form {
     margin-top: 20px;
 }
@@ -75,29 +69,6 @@ input[type='submit']:hover {
     background-color: #45a049;
 }
 
-a#urlShortened {
-    display: block;
-    margin-top: 20px;
-    text-decoration: none;
-    transition: 0.2s;
-}
 
-a#urlShortened:hover {
-    color: #0000aa;
-}
 
-button#copyButton {
-    width: 80%;
-    background-color: #008cba;
-    color: white;
-    padding: 14px 20px;
-    margin-top: 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: 0.2s;
-}
 
-button#copyButton:hover {
-    background-color: #0077a3;
-}
