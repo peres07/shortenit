@@ -1,4 +1,5 @@
-import { findShortened } from '../database/findShortened.js';
+import { findShortened } from '../database/manager/findShortened.js';
+import { updateClicks } from '../database/manager/updateClicks.js';
 export default async function shortenUrl(req, res) {
     try {
         const url = req.params.url;
@@ -6,6 +7,8 @@ export default async function shortenUrl(req, res) {
         if (urlFound === false) {
             throw new Error('Could not find the shortened URL');
         }
+        const clicks = urlFound.total_clicks + 1;
+        await updateClicks(urlFound.shortened_url, clicks);
         res.redirect(urlFound.url);
     }
     catch (error) {

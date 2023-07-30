@@ -1,4 +1,4 @@
-import { selectAll } from '../database/selectAll.js';
+import { selectAll } from '../../database/statistics/selectAll.js';
 export default async function allUrls(req, res) {
     try {
         const allUrls = await selectAll();
