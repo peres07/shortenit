@@ -3,84 +3,16 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="Shorten It is a user-friendly URL shortener that allows you to quickly shorten long and complex URLs into concise and shareable links. Shorten It can simplify your online navigation and sharing experience." />
+        <meta name="description" content="Shorten It is a URL shortener that simplifies your online navigation and sharing experience by turning long and complex URLs into concise and shareable links." />
         <title>Shorten it!: Your URLs shortened.</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-            }
-
-            main, header {
-                max-width: 600px;
-                margin: 0 auto;
-                text-align: center;
-            }
-
-            h1 {
-                color: #333;
-                font-size: 36px;
-                margin-top: 50px;
-            }
-
-            p#totalUrls {
-                color: #121212;
-                font-size: 18px;
-                margin-top: 20px;
-            }
-
-            form {
-                margin-top: 20px;
-            }
-
-            input[type='url'] {
-                width: 80%;
-                padding: 12px 20px;
-                margin: 8px 0;
-                box-sizing: border-box;
-                border: 2px solid #ccc;
-                border-radius: 4px;
-            }
-
-            input[type='submit'] {
-                width: 80%;
-                background-color: #4caf50;
-                color: white;
-                padding: 14px 20px;
-                margin: 8px 0;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-            }
-
-            input[type='submit']:hover {
-                background-color: #45a049;
-            }
-
-            a#urlShortened {
-                display: block;
-                margin-top: 20px;
-            }
-
-            button#copyButton {
-                width: 80%;
-                background-color: #008cba;
-                color: white;
-                padding: 14px 20px;
-                margin-top: 20px;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-            }
-
-            button#copyButton:hover {
-                background-color: #0077a3;
-            }
-        </style>
+        <link rel="stylesheet" href="style.css" />
     </head>
     <body>
         <header>
+            <nav>
+                <a href="https://shortenit.me">Home</a>
+                <a href="https://shortenit.me/statistics">Statistics</a>
+            </nav>
             <h1>Shorten it!</h1>
             <p id="totalUrls">Loading...</p>
         </header>
@@ -95,63 +27,10 @@
                 />
                 <input type="submit" />
             </form>
-            <a href="#" id="urlShortened">Your link will show here</a>
+            <a href="#" target="_blank" id="urlShortened">Your link will show here</a>
             <button onclick="copyFunction()" id="copyButton">Copy</button>
         </main>
 
-        <script>
-            
-            const urlForm = document.getElementById('url-form');
-            const urlShortened = document.getElementById('urlShortened');
-            const totalUrls = document.getElementById('totalUrls');
-
-            async function getTotalUrls () {
-                const response = await fetch('https://shortenit.me/api/statistics/total-urls');
-                const responseData = await response.json();
-                totalUrls.innerHTML = 'Total URLs shortened: ' + responseData.totalShortened;
-            }
-
-            window.onload = async () => {
-                await getTotalUrls();
-            }
-
-            urlForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-
-                const url = document.getElementById('url').value;
-                const data = new URLSearchParams();
-                data.append('url', url);
-
-                try {
-                    const response = await fetch('https://shortenit.me/api/shorten-url', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-                        },
-                        body: data,
-                    });
-                    const responseData = await response.json();
-                    if (response.status !== 200) {
-                        return alert(responseData.error);
-                    }
-                    alert('URL shortened successfully!');
-                    urlShortened.href = 'https://shortenit.me/' + responseData.urlShortened;
-                    urlShortened.innerHTML = 'https://shortenit.me/' + responseData.urlShortened;
-                    await getTotalUrls();
-                } catch (err) {
-                    console.log(err)
-                    alert('An error occurred: ' + err);
-                }
-            });
-
-            function copyFunction() {
-                if (urlShortened.innerHTML === 'Your link will show here') {
-                    return alert('No URL to copy!');
-                }
-                const copyText = document.getElementById('urlShortened');
-                navigator.clipboard.writeText(copyText.innerHTML);
-                alert('URL copied to clipboard!');
-            }
-        </script>
+        <script src="home.js"></script>
     </body>
 </html>
