@@ -39,6 +39,8 @@ npm install
 CREATE TABLE urls (
     shortened_url VARCHAR(255) PRIMARY KEY NOT NULL,
     url VARCHAR(255) NOT NULL,
+    total_clicks INT NOT NULL,
+    created_at TIMESTAMP NOT NULL
 )
 ```
 4. Crie um arquivo .env na pasta `backend` e preencha as variáveis de ambiente
