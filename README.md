@@ -73,6 +73,14 @@ npm run dev
 }
 ```
 
+## GET /:shortened_url
+
+### Response
+
+```js
+res.redirect(url)
+```
+
 ## GET /api/statistics/get-url
 
 ### Request
@@ -94,23 +102,13 @@ npm run dev
 }
 ```
 
-## GET /api/statistics/total-urls
+## GET /api/statistics/get-total
 
 ### Response
 
 ```json
 {
     "totalShortened": 10
+    "totalClicks": 100
 }
 ```
-
-## GET /:shortened_url
-
-### Response
-
-```js
-res.redirect(url)
-```
-
-
-

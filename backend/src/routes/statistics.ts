@@ -5,7 +5,7 @@ import urlController from '../controllers/statisticsContollers/urlController.js'
 
 const router = express.Router()
 
-router.get('/total-urls', totalUrlsController as RequestHandler)
+router.get('/get-total', totalUrlsController as RequestHandler)
 router.post('/get-url', urlController as RequestHandler)
 
 export default router

@@ -1,11 +1,12 @@
-import { selectAll } from '../../database/statistics/selectAll.js';
+import { selectTotalClicks } from '../../database/statistics/selectTotalClicks.js';
 export default async function allUrls(req, res) {
     try {
-        const allUrls = await selectAll();
+        const allUrls = await selectTotalClicks();
         if (allUrls === false) {
             throw new Error('Could not get all urls');
         }
-        return res.status(200).json({ totalShortened: allUrls.rowCount });
+        const totalClicks = allUrls.rows.reduce((acc, curr) => acc + curr.total_clicks, 0);
+        return res.status(200).json({ totalShortened: allUrls.rowCount, totalClicks });
     }
     catch (error) {
         if (error instanceof Error) {

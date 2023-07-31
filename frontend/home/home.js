@@ -1,14 +1,17 @@
 const urlForm = document.getElementById('url-form');
 const urlShortened = document.getElementById('urlShortened');
 const totalUrls = document.getElementById('totalUrls');
+const totalClicks = document.getElementById('totalClicks');
 
 async function getTotalUrls() {
     const response = await fetch(
-        'https://shortenit.me/api/statistics/total-urls'
+        'http://127.0.0.1:3000/api/statistics/get-total'
     );
+    console.log(response);
     const responseData = await response.json();
     totalUrls.innerHTML =
         'Total URLs shortened: ' + responseData.totalShortened;
+    totalClicks.innerHTML = 'Total URLs clicked: ' + responseData.totalClicks;
 }
 
 window.onload = async () => {
@@ -36,9 +39,20 @@ urlForm.addEventListener('submit', async (e) => {
             return alert(responseData.error);
         }
         alert('URL shortened successfully!');
-        urlShortened.href = 'https://shortenit.me/' + responseData.urlShortened;
-        urlShortened.innerHTML =
-            'https://shortenit.me/' + responseData.urlShortened;
+
+        const main = document.querySelector('main');
+        const section = main.querySelector('section');
+
+        if (section) {
+            main.removeChild(section);
+        }
+
+        const newSection = document.createElement('section');
+        newSection.innerHTML = `
+        <a href="https://shortenit.me/${responseData.urlShortened}" target="_blank" id="urlShortened">https://shortenit.me/${responseData.urlShortened}</a>
+        <button onclick="copyFunction()" id="copyButton">Copy</button>
+        `;
+        main.appendChild(newSection);
         await getTotalUrls();
     } catch (err) {
         console.log(err);

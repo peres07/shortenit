@@ -4,6 +4,10 @@ p {
     margin-top: 20px;
 }
 
+h1 {
+    margin-bottom: 0;
+}
+
 a#urlShortened {
     display: block;
     margin-top: 20px;
