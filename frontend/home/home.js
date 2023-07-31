@@ -59,9 +59,6 @@ urlForm.addEventListener('submit', async (e) => {
 });
 
 function copyFunction() {
-    if (urlShortened.innerHTML === 'Your link will show here') {
-        return alert('No URL to copy!');
-    }
     const copyText = document.getElementById('urlShortened');
     navigator.clipboard.writeText(copyText.innerHTML);
     alert('URL copied to clipboard!');
