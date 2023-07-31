@@ -1,7 +1,11 @@
-body {
-    font-family: Arial, sans-serif;
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
 }
 
 main {
@@ -15,23 +19,53 @@ header {
 }
 
 nav {
+    display: grid;
+    grid-template-columns: 1fr 7fr 1fr;
+    height: 50px;
+    background-color: #f5f5f5c5;
+}
+
+nav > div:first-child {
+    grid-column: 2/3;
+}
+
+nav > div:last-child {
+    grid-column: 3/4;
+    gap: 20px;
+}
+
+
+nav > div {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 50px;
     gap: 40px;
-    background-color: #f5f5f5c5;
 }
 
-nav > a {
+nav > div > a > svg {
+    fill: #333;
+    height: 38px;
+    width: 38px;
+    transition: 0.2s;
+}
+
+nav > div > a > svg:hover {
+    width: 42px;
+    height: 42px;
+    fill: #000;
+}
+
+nav > div > a {
     text-decoration: none;
-    color: #444;
+    color: #333;
     font-size: 18px;
     transition: 0.2s;
 }
 
-nav > a:hover {
-    color: #222;
+nav > div > a:hover {
+    font-size: 19px;
+    color: #000;
 }
 
 h1 {
@@ -54,6 +88,7 @@ input[type='url'] {
 }
 
 input[type='submit'] {
+    height: 100%;
     width: 80%;
     background-color: #4caf50;
     color: white;
@@ -69,6 +104,20 @@ input[type='submit']:hover {
     background-color: #45a049;
 }
 
+@media(max-width: 600px) {
+    nav {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        height: 50px;
+        background-color: #f5f5f5c5;
+    }
 
+    nav > div:first-child {
+        grid-column: 1/2;
+    }
 
-
+    nav > div:last-child {
+        grid-column: 2/3;
+        gap: 20px;
+    }
+}
