@@ -5,7 +5,7 @@ const totalClicks = document.getElementById('totalClicks');
 
 async function getTotalUrls() {
     const response = await fetch(
-        'http://127.0.0.1:3000/api/statistics/get-total'
+        'https://shortenit.me/api/statistics/get-total'
     );
     console.log(response);
     const responseData = await response.json();
