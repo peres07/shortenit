@@ -40,6 +40,6 @@ urlForm.addEventListener('submit', async (e) => {
         `;
         main.appendChild(newSection);
     } catch (err) {
-        console.log(err);
+        alert('An error occurred: ' + err);
     }
 });

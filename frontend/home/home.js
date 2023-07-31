@@ -7,7 +7,6 @@ async function getTotalUrls() {
     const response = await fetch(
         'https://shortenit.me/api/statistics/get-total'
     );
-    console.log(response);
     const responseData = await response.json();
     totalUrls.innerHTML =
         'Total URLs shortened: ' + responseData.totalShortened;
@@ -55,7 +54,6 @@ urlForm.addEventListener('submit', async (e) => {
         main.appendChild(newSection);
         await getTotalUrls();
     } catch (err) {
-        console.log(err);
         alert('An error occurred: ' + err);
     }
 });
