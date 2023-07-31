@@ -81,7 +81,7 @@ npm run dev
 res.redirect(url)
 ```
 
-## GET /api/statistics/get-url
+## POST /api/statistics/get-url
 
 ### Request
 
