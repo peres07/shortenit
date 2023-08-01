@@ -1,3 +1,5 @@
+const notyf = new Notyf();
+
 const urlForm = document.getElementById('url-form');
 const urlShortened = document.getElementById('urlShortened');
 const totalUrls = document.getElementById('totalUrls');
@@ -35,10 +37,8 @@ urlForm.addEventListener('submit', async (e) => {
         });
         const responseData = await response.json();
         if (response.status !== 200) {
-            return alert(responseData.error);
+            return notyf.error(responseData.error);
         }
-        alert('URL shortened successfully!');
-
         const main = document.querySelector('main');
         const section = main.querySelector('section');
 
@@ -52,14 +52,19 @@ urlForm.addEventListener('submit', async (e) => {
         <button onclick="copyFunction()" id="copyButton">Copy</button>
         `;
         main.appendChild(newSection);
+        notyf.success('URL shortened successfully!');
         await getTotalUrls();
     } catch (err) {
-        alert('An error occurred: ' + err);
+        notyf.error('An error occurred: ' + err);
     }
 });
 
 function copyFunction() {
-    const copyText = document.getElementById('urlShortened');
-    navigator.clipboard.writeText(copyText.innerHTML);
-    alert('URL copied to clipboard!');
+    try {
+        const copyText = document.getElementById('urlShortened');
+        navigator.clipboard.writeText(copyText.innerHTML);
+        notyf.success('URL copied to clipboard!');
+    } catch (err) {
+        notyf.error('An error occurred: ' + err);
+    }
 }

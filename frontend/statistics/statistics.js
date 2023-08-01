@@ -1,3 +1,5 @@
+const notyf = new Notyf();
+
 const urlForm = document.getElementById('url-form');
 
 urlForm.addEventListener('submit', async (e) => {
@@ -21,7 +23,7 @@ urlForm.addEventListener('submit', async (e) => {
         );
         const responseData = await response.json();
         if (response.status !== 200) {
-            return alert(responseData.error);
+            return notyf.error(responseData.error);
         }
         const main = document.querySelector('main');
         const section = main.querySelector('section');
@@ -33,13 +35,21 @@ urlForm.addEventListener('submit', async (e) => {
         const newSection = document.createElement('section');
         newSection.innerHTML = `
             <h2>URL Statistics</h2>
-            <p>Shortened URL: <a href="https://shortenit.me/${responseData.shortenedUrl}">https://shortenit.me/${responseData.shortenedUrl}</a></p>
-            <p>Redirect to: <a href="${responseData.url}">${responseData.url}</a></p>
+            <p>Shortened URL: <a href="https://shortenit.me/${
+                responseData.shortenedUrl
+            }">https://shortenit.me/${responseData.shortenedUrl}</a></p>
+            <p>Redirect to: <a href="${responseData.url}">${
+            responseData.url
+        }</a></p>
             <p>Number of clicks: ${responseData.totalClicks}</p>
-            <p>Created at: ${new Date(responseData.createdAt).toISOString().replace('T', ' ').slice(0, -5)}</p>
+            <p>Created at: ${new Date(responseData.createdAt)
+                .toISOString()
+                .replace('T', ' ')
+                .slice(0, -5)}</p>
         `;
         main.appendChild(newSection);
+        notyf.success('URL statistics retrieved successfully!');
     } catch (err) {
-        alert('An error occurred: ' + err);
+        notyf.error('An error occurred: ' + err);
     }
 });

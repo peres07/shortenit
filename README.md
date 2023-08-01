@@ -31,8 +31,7 @@ git clone https://github.com/hyxtheone/shortenit.git
 ```
 2. Instale as dependências
 ```sh
-cd backend
-npm install
+cd backend; npm install; cd ../frontend; npm install
 ```
 3. Crie um banco de dados no postgresql com as seguintes querys
 ```sql
@@ -50,7 +49,8 @@ CONNECTION_STRING=postgres://user:password@host:port/database
 ```
 5. Execute o projeto
 ```sh
-npm run dev
+cd backend
+npm start
 ```
 
 # API
