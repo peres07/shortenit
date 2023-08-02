@@ -78,7 +78,7 @@ urlForm.addEventListener('submit', async (e) => {
             await showShortenedUrl(responseData);
         } else {
             const response = await fetch(
-                'https://shortenit.me/api/shorten-url',
+                'https://shortenit.me/api/random-url',
                 {
                     method: 'POST',
                     headers: {
