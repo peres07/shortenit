@@ -8,14 +8,18 @@
             content="Shorten It is a URL shortener that simplifies your online navigation and sharing experience by turning long and complex URLs into concise and shareable links."
         />
         <title>Shorten it!: Your URLs shortened.</title>
-        <link type="image/png" sizes="16x16" rel="icon" href="./assets/favicon.png">
+        <link
+            type="image/png"
+            sizes="16x16"
+            rel="icon"
+            href="./assets/favicon.png"
+        />
         <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css"
         />
         <link rel="stylesheet" href="./global.css" />
         <link rel="stylesheet" href="./home/home.css" />
-
     </head>
     <body>
         <header>
@@ -86,6 +90,15 @@
                     placeholder="Enter URL here"
                     required="true"
                 />
+                <div class="custom-url-main">
+                  <div class="custom-url-check">
+                    <label for="custom-url-check"><p>Custom URL</p></label>
+                    <label class="switch">
+                        <input type="checkbox" id="customUrlCheckbox" />
+                        <span class="slider round"></span>
+                    </label>
+                  </div>
+                </div>
                 <input type="submit" />
             </form>
         </main>

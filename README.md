@@ -55,7 +55,7 @@ npm start
 
 # API
 
-## POST /api/shorten-url
+## POST /api/random-url
 
 ### Request
 
@@ -69,7 +69,26 @@ npm start
 
 ```json
 {
-    "url": "abc123"
+    "shortenedUrl": "abc123"
+}
+```
+
+## POST /api/custom-url
+
+### Request
+
+```json
+{
+    "url": "https://www.google.com",
+    "customUrl": "myCustomUrl"
+}
+```
+
+### Response
+
+```json
+{
+    "shortenedUrl": "myCustomUrl"
 }
 ```
 

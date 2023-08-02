@@ -1,5 +1,4 @@
 import { saveUrl } from '../database/manager/saveUrl.js'
-import { findUrl } from '../database/manager/findUrl.js'
 import { findShortened } from '../database/manager/findShortened.js'
 
 function generate (): string {
@@ -17,12 +16,6 @@ function generate (): string {
 
 export async function generateUrl (url: string): Promise<boolean | string> {
   try {
-    const findUrlResult = await findUrl(url)
-
-    if (findUrlResult !== false) {
-      return findUrlResult.shortened_url
-    }
-
     let generatedUrl = generate()
     const findShortenedResult = await findShortened(generatedUrl)
 

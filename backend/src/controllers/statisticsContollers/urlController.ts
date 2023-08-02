@@ -1,11 +1,11 @@
 import { type Request, type Response } from 'express'
 
 import { selectUrl } from '../../database/statistics/selectUrl.js'
-import { urlSchema } from '../../schemas/urlSchema.js'
+import { randomUrlSchema } from '../../schemas/randomUrlSchema.js'
 
 export default async function urlStatistics (req: Request, res: Response): Promise<Response> {
   try {
-    await urlSchema.validateAsync(req.body)
+    await randomUrlSchema.validateAsync(req.body)
     let { url } = req.body
     url = url.split('/')[3]
     const urlStatistics = await selectUrl(url)

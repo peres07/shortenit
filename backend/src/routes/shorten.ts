@@ -1,9 +1,11 @@
 import express, { type RequestHandler } from 'express'
 
-import shortenController from '../controllers/shortenController.js'
+import randomController from '../controllers/shortenUrlControllers/randomUrlController.js'
+import customController from '../controllers/shortenUrlControllers/customUrlController.js'
 
 const router = express.Router()
 
-router.post('/shorten-url', shortenController as RequestHandler)
+router.post('/random-url', randomController as RequestHandler)
+router.post('/custom-url', customController as RequestHandler)
 
 export default router
