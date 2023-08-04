@@ -22,11 +22,22 @@ async function showShortenedUrl(responseData) {
     }
 
     const newSection = document.createElement('section');
-    newSection.innerHTML = `
-        <a href="https://shortenit.me/${responseData.shortenedUrl}" target="_blank" id="shortenedUrl">https://shortenit.me/${responseData.shortenedUrl}</a>
-        <button onclick="copyFunction()" id="copyButton">Copy</button>
-        `;
+    const newAnchor = document.createElement('a');
+
+    newAnchor.href = `https://shortenit.me/${responseData.shortenedUrl}`;
+    newAnchor.target = '_blank';
+    newAnchor.id = 'shortenedUrl';
+    newAnchor.innerText = `https://shortenit.me/${responseData.shortenedUrl}`;
+
+    const newButton = document.createElement('button');
+    newButton.onclick = copyFunction;
+    newButton.id = 'copyButton';
+    newButton.innerText = 'Copy';
+
     main.appendChild(newSection);
+    newSection.appendChild(newAnchor);
+    newSection.appendChild(newButton);
+
     notyf.success('URL shortened successfully!');
     await getTotalUrls();
 }
@@ -38,9 +49,8 @@ async function getTotalUrls() {
         'https://shortenit.me/api/statistics/get-total'
     );
     const responseData = await response.json();
-    totalUrls.innerHTML =
-        'Total URLs shortened: ' + responseData.totalShortened;
-    totalClicks.innerHTML = 'Total URLs clicked: ' + responseData.totalClicks;
+    totalUrls.innerText = `Total URLs shortened: ${responseData.totalShortened}`;
+    totalClicks.innerText = `Total URLs clicked: ${responseData.totalClicks} `;
 }
 
 window.onload = async () => {
