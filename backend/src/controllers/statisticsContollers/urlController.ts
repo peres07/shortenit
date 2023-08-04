@@ -16,7 +16,8 @@ export default async function urlStatistics (req: Request, res: Response): Promi
       url: urlStatistics.url,
       shortenedUrl: urlStatistics.shortened_url,
       totalClicks: urlStatistics.total_clicks,
-      createdAt: urlStatistics.created_at
+      createdAt: urlStatistics.created_at,
+      custom: urlStatistics.custom
     })
   } catch (error) {
     if (error instanceof Error) {

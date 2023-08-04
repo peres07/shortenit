@@ -7,7 +7,7 @@ export async function saveCustomUrl (url: string, customUrl: string): Promise<st
     if (findShortenedResult !== false) {
       throw new Error('The custom URL is already registered')
     }
-    const saveUrlResult = await saveUrl(customUrl, url, 0, new Date())
+    const saveUrlResult = await saveUrl(customUrl, url, 0, new Date(), true)
 
     if (!saveUrlResult) {
       throw new Error('Could not save the URL')

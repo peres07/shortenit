@@ -39,7 +39,8 @@ CREATE TABLE urls (
     shortened_url VARCHAR(255) PRIMARY KEY NOT NULL,
     url VARCHAR(255) NOT NULL,
     total_clicks INT NOT NULL,
-    created_at TIMESTAMP NOT NULL
+    created_at TIMESTAMP NOT NULL,
+    custom BOOLEAN NOT NULL
 )
 ```
 4. Crie um arquivo .env na pasta `backend` e preencha as variáveis de ambiente
@@ -118,6 +119,7 @@ res.redirect(url)
     "shortenedUrl": "abc123",
     "totalClicks": 10,
     "createdAt": "2022-08-01T00:00:00.000Z",
+    "custom": true
 }
 ```
 

@@ -3,4 +3,5 @@ export interface Url {
   url: string
   total_clicks: number
   created_at: Date
+  custom: boolean
 }
