@@ -47,9 +47,12 @@ urlForm.addEventListener('submit', async (e) => {
                 .replace('T', ' ')
                 .slice(0, -5)}</p>
         `;
+
         main.appendChild(newSection);
+        urlForm.reset();
         notyf.success('URL statistics retrieved successfully!');
     } catch (err) {
+        urlForm.reset();
         notyf.error('An error occurred: ' + err);
     }
 });

@@ -39,6 +39,7 @@ async function showShortenedUrl(responseData) {
     newSection.appendChild(newButton);
 
     notyf.success('URL shortened successfully!');
+    urlForm.reset();
     await getTotalUrls();
 }
 
@@ -83,6 +84,7 @@ urlForm.addEventListener('submit', async (e) => {
             );
             const responseData = await response.json();
             if (response.status !== 200) {
+                urlForm.reset();
                 return notyf.error(responseData.error);
             }
             await showShortenedUrl(responseData);
@@ -100,11 +102,13 @@ urlForm.addEventListener('submit', async (e) => {
             );
             const responseData = await response.json();
             if (response.status !== 200) {
+                urlForm.reset();
                 return notyf.error(responseData.error);
             }
             await showShortenedUrl(responseData);
         }
     } catch (err) {
+        urlForm.reset();
         notyf.error('An error occurred: ' + err);
     }
 });
