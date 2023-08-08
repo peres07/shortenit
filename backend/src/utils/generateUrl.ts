@@ -15,8 +15,12 @@ function generate (): string {
   return result
 }
 
-export async function generateUrl (url: string): Promise<boolean | string> {
+export async function generateUrl (url: string): Promise<boolean | string | Error> {
   try {
+    if (url.includes('shortenit')) {
+      throw new Error('You can not shorten a shortened URL')
+    }
+
     let generatedUrl = generate()
     const findShortenedResult = await findShortened(generatedUrl)
     const findUrlAlreadyExists = await findUrl(url)
@@ -37,7 +41,9 @@ export async function generateUrl (url: string): Promise<boolean | string> {
 
     return generatedUrl
   } catch (error) {
-    console.error(error)
-    return false
+    if (error instanceof Error) {
+      return error
+    }
+    return new Error('Could not save the URL')
   }
 }

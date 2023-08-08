@@ -7,10 +7,13 @@ export default async function randomUrl (req: Request, res: Response): Promise<R
   try {
     await randomUrlSchema.validateAsync(req.body)
     const { url } = req.body
+
     const shortenedUrl = await generateUrl(url)
-    if (shortenedUrl === false) {
-      throw new Error('Could not generate a shortened URL')
+
+    if (shortenedUrl instanceof Error) {
+      throw new Error(shortenedUrl.message)
     }
+
     return res.status(200).json({ shortenedUrl })
   } catch (error) {
     if (error instanceof Error) {
