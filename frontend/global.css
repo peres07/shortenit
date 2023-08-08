@@ -81,7 +81,7 @@ form {
     margin-top: 20px;
 }
 
-input[type='url'], input[type='text'] {
+input[type='text'] {
     width: 80%;
     padding: 12px 20px;
     margin: 8px 0;

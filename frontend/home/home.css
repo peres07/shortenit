@@ -19,6 +19,10 @@ a#shortenedUrl:hover {
     color: #0000aa;
 }
 
+input[type='text'] {
+    width: 80%;
+}
+
 .custom-url-main {
     display: flex;
     justify-content: space-between;
