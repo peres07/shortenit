@@ -1,3 +1,5 @@
+@import url('assets/fonts/ggsans/stylesheet.css');
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -5,7 +7,7 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'gg sans', sans-serif;
 }
 
 main {
@@ -33,7 +35,6 @@ nav > div:last-child {
     grid-column: 3/4;
     gap: 20px;
 }
-
 
 nav > div {
     display: flex;
@@ -81,7 +82,7 @@ form {
     margin-top: 20px;
 }
 
-input[type='text'] {
+input[type='text'], input[type='url'] {
     width: 80%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -111,7 +112,7 @@ input[type='submit']:hover {
     background-color: #45a049;
 }
 
-@media(max-width: 600px) {
+@media (max-width: 600px) {
     nav {
         display: grid;
         grid-template-columns: 1fr 1fr;
