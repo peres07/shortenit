@@ -12,6 +12,9 @@ export default async function shortenUrl (req: Request, res: Response): Promise<
     }
     const clicks = urlFound.total_clicks + 1
     await updateClicks(urlFound.shortened_url, clicks)
+    if (!urlFound.url.startsWith('http') || !urlFound.url.startsWith('https')) {
+      urlFound.url = 'https://' + urlFound.url
+    }
     res.redirect(urlFound.url)
   } catch (error) {
     console.log(error)
