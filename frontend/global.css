@@ -112,6 +112,10 @@ input[type='submit']:hover {
     background-color: #45a049;
 }
 
+.ad {
+    margin-top: 100px;
+}
+
 @media (max-width: 600px) {
     nav {
         display: grid;
